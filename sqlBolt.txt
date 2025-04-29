@@ -9,5 +9,24 @@ Q2. Find director of each film.
 Q3. Find the title and director of each film.
     SELECT title, director FROM movies;
 
-Q4. 
+Q4. Find the title and year of each film.
+    SELECT title, year FROM movies;
+
+Q5. Find all the information of each film.
+    SELECT * FROM movies;
+
+                            CHAPTER 2
+
+Q6. Find the movie with row id of 6.
+    SELECT * FROM movies where id = 6;
+
+Q7. Find the movies with the release year between 2000 and 2010.
+    SELECT * FROM movies where year between 2000 and 2010;
+
+Q8. Find the movies not released in year between 2000 and 2010.
+    SELECT * from movies where year not between 2000 and 2010;
+
+Q9. Find the first 5 movies and their release year.
+    SELECT * from movies order by year asc limit 5;
+
 
