@@ -1,0 +1,13 @@
+                            CHAPTER 1
+
+Q1  Find the title of each film.
+    SELECT title FROM movies;
+
+Q2. Find director of each film.
+    SELECT director FROM movies;
+
+Q3. Find the title and director of each film.
+    SELECT title, director FROM movies;
+
+Q4. 
+
