@@ -15,6 +15,7 @@ Q4. Find the title and year of each film.
 Q5. Find all the information of each film.
     SELECT * FROM movies;
 
+
                             CHAPTER 2
 
 Q6. Find the movie with row id of 6.
@@ -30,3 +31,90 @@ Q9. Find the first 5 movies and their release year.
     SELECT * from movies order by year asc limit 5;
 
 
+                            CHAPTER 3
+                        
+Q10. Find all the Toy Story movies.
+    SELECT * FROM movies where title like "Toy Story%" ;
+
+Q11. Find all the movies directed by John Lasseter.
+    SELECT * FROM movies where director = "John Lasseter" ;         #can use both like and = here
+
+Q12. Find all the movies not directed by John Lasseter.
+    SELECT * FROM movies where director not like "John Lasseter" ;  #can use both not like and <> here
+
+Q13. Find all the Wall-* movies.
+    SELECT * FROM movies where title like "Wall-%" ;
+
+
+                            CHAPTER 4
+                        
+Q14. List all directors name alphabetically without duplicates.
+    SELECT distinct(director) FROM movies order by director asc;
+
+Q15. List the last four movies released.
+    SELECT * FROM movies order by year desc limit 4 ;
+
+Q16. List the first five movies sorted alphabetically.
+    SELECT * FROM movies order by title asc limit 5 ;
+
+Q17. List the next five movies sorted alphabetically.
+    SELECT * FROM movies order by title asc limit 5 offset 5;
+
+
+                            CHAPTER 5
+
+Q18. List all the canadian cities and their population.
+    SELECT city, population FROM north_american_cities where country= "Canada";
+
+Q19. Order all the cities in United states by their latitude from north to south.
+    SELECT * FROM north_american_cities 
+    where country = 'United States' 
+    order by latitude desc ;
+
+Q20. List all the cities west of Chicago, ordered from west to east.
+    SELECT * FROM north_american_cities 
+    where longitude < -88 
+    order by longitude asc ;
+
+Q21. List the two largest city of Mexico by population.
+    SELECT * FROM north_american_cities
+    where country = "Mexico"
+    order by population desc
+    limit 2 ;
+
+Q22. List the 3rd and 4th largest city in United States by population.
+    SELECT * FROM north_american_cities
+    where country = "United States"
+    order by population desc
+    limit 2 offset 2 ;
+
+
+                            CHAPTER 6
+
+Q23. Find the domestic and international sales for each movie.
+    SELECT 
+        m.title, b.Domestic_sales, b.International_sales 
+    FROM 
+    movies m left join Boxoffice b 
+    on m.id = b.movie_id ;
+
+Q24. Show the sales number of such movies which did better in international than in domestic.
+    SELECT
+        m.title, b.international_sales, b.domestic_sales
+    from 
+    Movies m left join Boxoffice b
+    on m.id = b.movie_id
+    where b.international_sales > b.domestic_sales ;
+
+Q25. List all the movies by their rating in descending order.
+    SELECT
+        m.title, b.rating
+    from 
+    Movies m left join Boxoffice b
+    on m.id = b.movie_id
+    order by b.rating desc ;
+
+
+                                CHAPTER 7
+
+Q26. 
