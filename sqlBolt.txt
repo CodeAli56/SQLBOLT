@@ -117,4 +117,104 @@ Q25. List all the movies by their rating in descending order.
 
                                 CHAPTER 7
 
-Q26. 
+Q26. Find the list all the buildings that have employees.
+    SELECT
+        distinct(b.building_name)
+    FROM
+    buildings b left join employees e
+    on b.building_name = e.building
+    where e.name is not null ;
+
+Q27. Find the list of all buildings with their capacity.
+    SELECT * FROM buildings;
+
+Q28. List all buildings and distinct employee roles in each building.
+    select
+        distinct b.building_name, e.role
+    from 
+    buildings b left join employees e
+    on b.building_name = e.building ;
+
+
+                                CHAPTER 8
+
+Q29. Find the name and role of employees who have not been assigned any building to them.
+    SELECT * from employees where building is null ;
+
+Q30. Find the name of the building that hold no employees.
+    SELECT 
+        b.building_name 
+    FROM 
+    buildings b left join employees e
+    on b.building_name = e.building
+    where e.name is null ;
+
+
+                                CHAPTER 9
+
+Q31. List all movies and their combined sales in millions.
+    SELECT 
+        m.title, (b.domestic_sales + b.international_sales) / 1000000 as TotalSales
+    FROM 
+    movies m left join boxoffice b
+    on m.id = b.movie_id
+
+Q32. List all the movies and their rating in percent.
+    SELECT 
+        m.title, round(b.rating * 100 / 10, 2) as RatingPercent
+    FROM 
+    movies m left join boxoffice b
+    on m.id = b.movie_id
+
+Q33. List all the movies that were released in even number years.
+    SELECT title from movies where year % 2 = 0 ;
+
+
+                                CHAPTER 10
+
+Q34. Find the longest time that an employee have been at the studio.
+    SELECT max(years_employed) FROM employees ;
+
+Q35. For each role, find the average number of years employed by employees in that role.
+    SELECT role, avg(years_employed) FROM employees group by role;
+
+Q36. Find the total number of employee years worked in each building.
+    SELECT building, sum(years_employed) FROM employees group by building ;
+
+
+                                CHAPTER 11
+
+Q37. Find the number of Artists in the studio without using HAVING clause.
+    SELECT count(*) FROM employees where role = "Artist";
+
+Q38. Find the number of employee of each role in the studio.
+    SELECT role, count(*) FROM employees group by role;
+
+Q39. Find the total number of years employed by all engineers.
+    SELECT role, sum(years_employed) FROM employees group by role having role="Engineer";
+
+    SELECT sum(years_employed) FROM employees where role="Engineer";
+
+
+                                CHAPTER 12
+
+Q40. Find the number of movies each director has directed.
+    SELECT director, count(director) FROM movies group by director;
+
+Q41. Find the total domestic and international sales that can be attributed to each director.
+    SELECT
+        m.director, ( sum(b.domestic_sales) + sum(b.international_sales) ) as TotalSales
+    from movies m left join boxoffice b 
+    on m.id = b.movie_id
+    group by director ;
+
+
+                                CHAPTER 13
+
+Q42. Add the studio's new production, Toy Story 4 to the list with any director.
+    insert into movies values (5,'Toy Story 4', 'John Lasseter',2000,90)
+
+Q43. Toy story 4 had been released with rating 8.7 and made 340mn domestically and 270mn internationally. Add this to boxoffice record.
+    insert into boxoffice values (5, 8.7, 340000000, 270000000)
+
+
